@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service id="RESTInterface">
+    <package>uk.ac.le.cs.CO3102</package>
+    <extends>
+        <class>Remote</class>
+        <class>Remote1</class>
+    </extends>
+    <import>java.rmi.Remote</import>
+    <import>java.rmi.RemoteException</import>
+    <import>java.net.*</import>
+    <abstract_method name="authenticateUser" static="true">
+        <visibility>public</visibility>
+        <arguments>
+            <parameter type="String">account</parameter>
+            <parameter type="String">password</parameter>
+            <parameter type="URL">url</parameter>
+        </arguments>
+        <exceptions>
+            <exception>RemoteException</exception>
+            <exception>MalformedURLException</exception>
+        </exceptions>
+        <return>boolean</return>
+    </abstract_method>
+    <abstract_method name="deleteUser">
+        <visibility>private</visibility>
+        <arguments>
+            <parameter type="String">user</parameter>
+        </arguments>
+        <return>void</return>
+    </abstract_method>
+</service>
