@@ -1,0 +1,35 @@
+{"abstract_method": [
+ {
+  "visibility": "public",
+  "method_name": "authenticateUser",
+  "arguments": {"parameter": [
+   {
+    "datatype": "String",
+    "label": "account"
+   },
+   {
+    "datatype": "String",
+    "label": "password"
+   },
+   {
+    "datatype": "URL",
+    "label": "url"
+   }
+  ]},
+  "exceptions": {"exception": [
+   "RemoteException",
+   "MalformedURLException"
+  ]},
+  "return": "boolean"
+ },
+ {
+  "visibility": "private",
+  "method_name": "deleteUser",
+  "arguments": {"parameter": [{
+   "datatype": "String",
+   "label": "user"
+  }]},
+  "exceptions": {},
+  "return": "void"
+ }
+]}
