@@ -94,7 +94,7 @@ public class WebServiceProvider {
                 argumentsList.put("parameter", parametersArray);
                 abstractMethodName.put("arguments", argumentsList);
 
-                if (exceptionsArray.length() > 0) {
+                if (!exceptionsArray.isEmpty()) {
                     JSONObject exceptionsJson = new JSONObject();
                     exceptionsJson.put("exception", exceptionsArray);
                     abstractMethodName.put("exceptions", exceptionsJson);
