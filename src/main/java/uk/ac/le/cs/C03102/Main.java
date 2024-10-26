@@ -17,8 +17,8 @@ public class Main {
         boolean isValid = validateXMLSchema(xsdFilePath, xmlFilePath);
         if (isValid) {
             System.out.println("XML is valid against the provided XSD.");
-            createHTMLFile(xmlFilePath, xsltFilePath);
-            createJsonFIle(xmlFilePath);
+//            createHTMLFile(xmlFilePath, xsltFilePath);
+//            createJsonFIle(xmlFilePath);
         } else {
             System.out.println("XML is NOT valid against the provided XSD.");
         }

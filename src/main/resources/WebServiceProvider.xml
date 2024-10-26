@@ -3,12 +3,11 @@
     <package>uk.ac.le.cs.CO3102</package>
     <extends>
         <class>Remote</class>
-        <class>Remote1</class>
     </extends>
     <import>java.rmi.Remote</import>
     <import>java.rmi.RemoteException</import>
     <import>java.net.*</import>
-    <abstract_method name="authenticateUser" static="true">
+    <abstract_method name="authenticateUser">
         <visibility>public</visibility>
         <arguments>
             <parameter type="String">account</parameter>

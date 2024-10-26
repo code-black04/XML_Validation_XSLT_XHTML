@@ -6,14 +6,18 @@
             <xsd:sequence>
                 <!--package element definition-->
                 <xsd:element name="package"
-                             type="xsd:string"
-                             default="default"/>
+                             minOccurs="0"
+                             maxOccurs="1"
+                             type="xsd:string"/>
                 <!--extends element definition-->
-                <xsd:element name="extends">
+                <xsd:element name="extends"
+                             minOccurs="0"
+                             maxOccurs="unbounded">
                     <xsd:complexType>
                         <xsd:sequence>
                             <!--class element definition-->
                             <xsd:element name="class"
+                                         minOccurs="0"
                                          maxOccurs="unbounded"
                                          type="xsd:string"/>
                         </xsd:sequence>
@@ -23,9 +27,11 @@
                 <xsd:element name="import"
                              minOccurs="0"
                              maxOccurs="unbounded"
-                             type="xsd:string"/>
+                             type="nonEmptyString">
+                </xsd:element>
                 <!--abstract_method element definition-->
                 <xsd:element name="abstract_method"
+                             minOccurs="0"
                              maxOccurs="unbounded">
                     <xsd:complexType>
                         <xsd:sequence>
@@ -33,19 +39,18 @@
                             <xsd:element name="visibility"
                                          type="xsd:string"
                                          minOccurs="0"
-                                         maxOccurs="1"
-                                         default="package-private"/>
+                                         maxOccurs="1"/>
                             <!--arguments element definition-->
                             <xsd:element name="arguments"
                                          minOccurs="0"
-                                         maxOccurs="unbounded">
+                                         maxOccurs="1">
                                 <xsd:complexType>
                                     <xsd:sequence>
                                         <!--parameter element definition-->
-                                        <xsd:element name="parameter" maxOccurs="unbounded">
+                                        <xsd:element name="parameter" maxOccurs="unbounded" minOccurs="0">
                                             <xsd:complexType>
                                                 <xsd:simpleContent>
-                                                    <xsd:extension base="xsd:string">
+                                                    <xsd:extension base="nonEmptyString">
                                                         <!--type element definition-->
                                                         <xsd:attribute name="type" type="xsd:string" use="required"/>
                                                     </xsd:extension>
@@ -63,14 +68,14 @@
                                     <xsd:sequence>
                                         <!--exception element definition-->
                                         <xsd:element name="exception"
-                                                     type="xsd:string"
+                                                     type="nonEmptyString"
                                                      minOccurs="0"
                                                      maxOccurs="unbounded"/>
                                     </xsd:sequence>
                                 </xsd:complexType>
                             </xsd:element>
                             <!--return element definition-->
-                            <xsd:element name="return" type="xsd:string"/>
+                            <xsd:element name="return" type="nonEmptyString"/>
                         </xsd:sequence>
                         <!--name attribute definition-->
                         <xsd:attribute name="name" type="xsd:string" use="required"/>
@@ -89,12 +94,6 @@
             <xsd:field xpath="."/>
         </xsd:unique>
 
-        <!-- Checks the content of each "import" element is not duplicated i.e. Unique imported class-->
-        <xsd:unique name="uniqueImportValue">
-            <xsd:selector xpath=".//import"/> <!-- Select all "class" elements -->
-            <xsd:field xpath="."/>
-        </xsd:unique>
-
         <!-- Checks the content of each "exception" element is not duplicated i.e. Unique exception caught or thrown-->
         <xsd:unique name="uniqueExceptionValue">
             <xsd:selector xpath=".//exception"/> <!-- Select all "class" elements -->
@@ -107,4 +106,12 @@
             <xsd:field xpath="."/>
         </xsd:unique>
     </xsd:element>
+
+    <!-- Definition of nonEmptyString to enforce non-empty content -->
+    <xsd:simpleType name="nonEmptyString">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:pattern value="\S+.*"/>
+        </xsd:restriction>
+    </xsd:simpleType>
 </xsd:schema>
