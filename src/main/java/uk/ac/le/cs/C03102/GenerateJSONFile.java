@@ -1,11 +1,14 @@
 package uk.ac.le.cs.C03102;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.BufferedWriter;
@@ -94,17 +97,21 @@ public class GenerateJSONFile {
         return (nodeList.getLength() > 0) ? nodeList.item(0).getTextContent() : null;
     }
 
-    private static Document getDocument(String filePath) {
-        // Code for Document initialization here
-        return null; // Replace with actual document parsing code
-    }
-
     private static void outputJsonFile(String jsonFilePath, JSONObject jsonObject) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(jsonFilePath))) {
-            String prettyJsonString = jsonObject.toString(1); // Pretty print JSON with 4-space indentation
-            writer.write(prettyJsonString);
+            String jsonString = jsonObject.toString(0); // Pretty print JSON with 4-space indentation
+            JsonElement jsonElement = JsonParser.parseString(jsonString);
+
+            // Create Gson instance with pretty-printing enabled
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+            // Pretty print the JsonElement
+            String prettyJson = gson.toJson(jsonElement);
+            System.out.println(prettyJson);
+
+            writer.write(prettyJson);
             writer.flush();
-            System.out.println("Pretty-printed JSON written to file:\n" + prettyJsonString);
+            System.out.println("Pretty-printed JSON written to file:\n" + prettyJson);
         } catch (IOException e) {
             System.err.println("Error writing JSON to file: " + e.getMessage());
         }

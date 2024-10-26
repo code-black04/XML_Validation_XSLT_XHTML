@@ -3,7 +3,7 @@ package uk.ac.le.cs.C03102;
 import net.sf.saxon.s9api.SaxonApiException;
 import java.io.IOException;
 import static uk.ac.le.cs.C03102.GenerateHTMLFile.createHTMLFile;
-import static uk.ac.le.cs.C03102.GenerateJSONFile.createJsonFIle;
+import static uk.ac.le.cs.C03102.WebServiceProvider.createJsonFile;
 import static uk.ac.le.cs.C03102.XmlSchemaValidator.validateXMLSchema;
 
 public class Main {
@@ -17,8 +17,8 @@ public class Main {
         boolean isValid = validateXMLSchema(xsdFilePath, xmlFilePath);
         if (isValid) {
             System.out.println("XML is valid against the provided XSD.");
-//            createHTMLFile(xmlFilePath, xsltFilePath);
-//            createJsonFIle(xmlFilePath);
+            createHTMLFile(xmlFilePath, xsltFilePath);
+            createJsonFile(xmlFilePath);
         } else {
             System.out.println("XML is NOT valid against the provided XSD.");
         }

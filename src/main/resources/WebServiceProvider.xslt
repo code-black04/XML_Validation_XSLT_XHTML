@@ -39,7 +39,7 @@
                                 <xsl:for-each select="arguments/parameter">
                                     <xsl:value-of select="."/>:
                                     <xsl:value-of select="@type"/>
-                                    <xsl:if test="position() != last()">
+                                    <xsl:if test="position() != last()">,
                                         <br/>
                                     </xsl:if>
                                 </xsl:for-each>
