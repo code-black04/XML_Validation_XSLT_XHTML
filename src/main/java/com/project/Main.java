@@ -1,10 +1,10 @@
-package uk.ac.le.cs.C03102;
+package com.project;
 
 import net.sf.saxon.s9api.SaxonApiException;
 import java.io.IOException;
-import static uk.ac.le.cs.C03102.GenerateHTMLFile.createHTMLFile;
-import static uk.ac.le.cs.C03102.WebServiceProvider.createJsonFile;
-import static uk.ac.le.cs.C03102.XmlSchemaValidator.validateXMLSchema;
+import static com.project.GenerateHTMLFile.createHTMLFile;
+import static com.project.WebServiceProvider.createJsonFile;
+import static com.project.XmlSchemaValidator.validateXMLSchema;
 
 public class Main {
     public static void main(String[] args) throws SaxonApiException, IOException {

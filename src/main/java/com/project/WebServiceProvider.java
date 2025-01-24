@@ -1,4 +1,4 @@
-package uk.ac.le.cs.C03102;
+package com.project;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
